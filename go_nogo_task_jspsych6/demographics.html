@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <script src="/study_assets/experimento/javascript/jquery-3.1.1.min.js"></script>
+    <script src="/study_assets/experimento/survey-jquery/survey.jquery.js"></script>
+    <script src="/assets/javascripts/jatos.js"></script>
+    <link rel="stylesheet" href="/study_assets/experimento/bootstrap-3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/study_assets/experimento/study.css">
+</head>
+
+<body>
+    <div id="demographics"></div>
+
+    <script>
+        jatos.onLoad(function () {
+
+            Survey.Survey.cssType = "bootstrap";
+            Survey.defaultBootstrapCss.navigationButton = "btn btn-green";
+
+            window.survey = new Survey.Model({
+                pages: [{
+                    questions: [{
+                            name: "sueno",
+                            type: "text",
+                            title: "¿Cúantas horas dormiste la noche anterior?",
+                            placeHolder: "ej: 8",
+                            isRequired: true
+                        },
+                        {
+                            name: "Cumpleanos",
+                            type: "text",
+                            inputType: "date",
+                            title: "Por favor, indicá tu fecha de nacimiento:",
+                            isRequired: true
+                        },
+                        {
+                            type: "dropdown",
+                            name: "Pais",
+                            title: "¿En qué país residis?",
+                            isRequired: true,
+                            colCount: 0,
+                            choices: jatos.componentJsonInput.countries,
+                            isRequired: true
+                        },
+                        {
+                            type: "dropdown",
+                            name: "Genero",
+                            title: "¿Con qué género te identificas?",
+                            isRequired: true,
+                            colCount: 0,
+                            choices: ["Masculino" , "Femenino", "No Binario", "Sin género", "Prefiero no decir" ,"Otro"],
+                            isRequired: true
+                        },
+                        {
+                            type: "dropdown",
+                            name: "Estudio",
+                            title: "¿Cuál es tu formación educativa?",
+                            isRequired: true,
+                            colCount: 0,
+                            choices: ["Primaria incompleta" , "Primaria completa", "Secundaria incompleta", "Secundaria completa", "Universidad incompleta" ,"Universidad completa", "Posgrado incompleto", "Posgrado completo"],
+                            isRequired: true
+                        },
+                        {
+                            type: "dropdown",
+                            name: "AffeccionPsico",
+                            title: "¿Fuiste diagnosticado por un profesional con algún trastorno Neurológico o Psicológico/Psiquiátrico?",
+                            isRequired: true,
+                            colCount: 0,
+                            choices: ["Sí" , "No", "Prefiero no decir", "No estoy seguro"],
+                            isRequired: true
+                        },
+                        {
+							name: "medicacion",
+                            type: "text",
+                            title: "¿Tomás alguna medicación?",
+                            placeHolder: "ej: Clonazepam",
+                            isRequired: true
+                        }
+                    ]
+                }]
+            });
+
+            survey.onComplete.add(function (result) {
+                $("#demographics").hide(); // Hides the 'Thank you for completing ...' message
+                jatos.submitResultData(JSON.stringify(result.data), jatos.startNextComponent);
+            });
+
+            $("#demographics").Survey({
+                model: survey
+            });
+
+        });
+    </script>
+</body>
+
+</html>
