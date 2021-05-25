@@ -28,7 +28,7 @@
       left_category_key: {
         type: jsPsych.plugins.parameterType.HTML_STRING, 
         pretty_name: 'Left category key',
-        default: 'E',
+        default: 'T',
         description: 'Key press that is associated with the left category label.'
       },
       right_category_key: {
@@ -109,26 +109,27 @@
 
     var html_str = "";
 
-    html_str += "<div style='position: absolute; height: 20%; width: 100%; margin-left: auto; margin-right: auto; top: 42%; left: 0; right: 0'><img src='"+trial.stimulus+"' id='jspsych-iat-stim'></img></div>";
+    html_str += "<div style='position: absolute; height: 20%; width: 100%; margin-left: auto; margin-right: auto; top: 30%; left: 0; right: 0'><img src='"+
+    trial.stimulus+"' id='jspsych-iat-stim'></img></div>"; // top: 42%
 
-    html_str += "<div id='trial_left_align' style='position: absolute; top: 18%; left: 20%'>";
+    html_str += "<div id='trial_left_align' style='position: absolute; top: 50%; left: 20%'>"; // top: 18%
 
     if(trial.left_category_label.length == 1) {
-      html_str += "<p>Press " + trial.left_category_key + " for:<br> " +
+      html_str += "<p> " + " <br> " +// html_str += "<p>Press " + trial.left_category_key + " for:<br> " +
       trial.left_category_label[0].bold() + "</p></div>";
     } else {
-      html_str += "<p>Press " + trial.left_category_key + " for:<br> " +
+      html_str += "<p> " + " <br> " +// html_str += "<p>Press " + trial.left_category_key + " for:<br> " +
       trial.left_category_label[0].bold() + "<br>" + "or<br>" +
       trial.left_category_label[1].bold() + "</p></div>";
     }
 
-    html_str += "<div id='trial_right_align' style='position: absolute; top: 18%; right: 20%'>";
+    html_str += "<div id='trial_right_align' style='position: absolute; top: 50%; right: 20%'>"; // top: 18%
 
     if(trial.right_category_label.length == 1) {
-      html_str += "<p>Press " + trial.right_category_key + " for:<br> " +
+      html_str += "<p> " + " <br> " +// html_str += "<p>Press " + trial.right_category_key + " for:<br> " +
       trial.right_category_label[0].bold() + '</p></div>';
     } else {
-      html_str += "<p>Press " + trial.right_category_key + " for:<br> " +
+      html_str += "<p> " + " <br> " +// html_str += "<p>Press " + trial.right_category_key + " for:<br> " +
       trial.right_category_label[0].bold() + "<br>" + "or<br>" +
       trial.right_category_label[1].bold() + "</p></div>";
     }
@@ -136,7 +137,8 @@
     html_str += "<div id='wrongImgID' style='position:relative; top: 300px; margin-left: auto; margin-right: auto; left: 0; right: 0'>";
 
     if(trial.display_feedback === true) {
-      html_str += "<div id='wrongImgContainer' style='visibility: hidden; position: absolute; top: -75px; margin-left: auto; margin-right: auto; left: 0; right: 0'><p>"+trial.html_when_wrong+"</p></div>";
+      html_str += "<div id='wrongImgContainer' style='visibility: hidden; position: absolute; top: -75px; margin-left: auto; margin-right: auto; left: 0; right: 0'><p>"+
+      trial.html_when_wrong+"</p></div>";
       html_str += "<div>"+trial.bottom_instructions+"</div>";
     } else {
       html_str += "<div>"+trial.bottom_instructions+"</div>";
